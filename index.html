@@ -60,41 +60,56 @@
       <main>
          <div class="container">
             <h1>Психологическое тестирование</h1>
-            <div class="descriptions">
-               <p>Тестирование позволяет оценить: траекторию становления личности, степень психологической устойчивости
-                  в
-                  трудных жизненных ситуациях, факторы риска и ресурсы защиты личности при вовлечении в зависимое
-                  поведение. Вы может пройти тест самостоятельно, результаты будут продемонстрированы на экране, а
-                  можете
-                  отправить специалисту для расшифровки и личностного консультирования.</p>
-            </div>
+
             <div class="forms">
                <form action="">
                   <div class="step01">
-                     <input name="soyad" type="text" placeholder="Фамилия">
-                     <input name="ad" type="text" placeholder="Имя">
-                     <input name="baba" type="text" placeholder="Отчество">
-                     <input name="age" type="text" placeholder="Возраст">
-                     <input name="email" type="text" placeholder="E-mail">
+                     <div class="descriptions">
+                        <p>Тестирование позволяет оценить: траекторию становления личности, степень психологической
+                           устойчивости
+                           в
+                           трудных жизненных ситуациях, факторы риска и ресурсы защиты личности при вовлечении в
+                           зависимое
+                           поведение. Вы может пройти тест самостоятельно, результаты будут продемонстрированы на
+                           экране, а
+                           можете
+                           отправить специалисту для расшифровки и личностного консультирования.</p>
+                     </div>
+                     <div class="form-content">
+                        <div class="wrapper">
 
-                     <div class="next btn01">Продолжить</div>
-                     <div class="get-result">
-                        <div class="title">Получение результата</div>
-                        <div class="checkboxes">
-                           <div class="item"> <input type="checkbox" id="option1" name="option1" value="1" checked>
-                              <label for="option1">Сразу</label><br>
-                           </div>
+                           <input name="soyad" type="text" placeholder="Фамилия">
+                           <input name="ad" type="text" placeholder="Имя">
+                           <input name="baba" type="text" placeholder="Отчество">
+                           <input name="age" type="text" placeholder="Возраст">
+                           <input name="email" type="text" placeholder="E-mail">
 
-                           <div class="item"><input type="checkbox" id="option2" name="option2" value="2" checked>
-                              <label for="option2">Отправить специалисту психологу</label><br>
+                           <div class="next btn01">Продолжить</div>
+                           <div class="get-result">
+                              <div class="title">Получение результата</div>
+                              <div class="checkboxes">
+                                 <div class="item"> <input type="checkbox" id="option1" name="option1" value="1">
+                                    <label for="option1">Сразу</label><br>
+                                 </div>
+
+                                 <div class="item"><input type="checkbox" id="option2" name="option2" value="2">
+                                    <label for="option2">Отправить специалисту психологу</label><br>
+                                 </div>
+
+                              </div>
+                              <div class="next btn02">Продолжить</div>
                            </div>
 
                         </div>
-                        <div class="next btn02 active">Продолжить</div>
                      </div>
                   </div>
-                  <button type="submit">Получить консультацию и расшифровку
-                     профессиональным специалистом с рекомендациями</button>
+                  <div class="step02">
+                     <h1>Hello, world!</h1>
+                  </div>
+                  <div class="form-content">
+                     <button type="submit" class="submit-test">Получить консультацию и расшифровку
+                        профессиональным специалистом с рекомендациями</button>
+                  </div>
                </form>
 
             </div>
@@ -122,12 +137,62 @@
    </div>
    <script>
       $(document).ready(function () {
+
+         $('.btn02').on('click', function () {
+            if ($(this).hasClass('active')) {
+               $('.step01').hide();
+               $('.step02').show();
+            }
+         });
+
+         $('.btn01').on('click', function () {
+            if ($(this).hasClass('active')) {
+               $('.get-result').show();
+               $(this).hide();
+            }
+         });
+
+         function checkInputs() {
+            let allFilled = true;
+            $('.step01 input[type="text"]').each(function () {
+               if ($(this).val() === '') {
+                  allFilled = false;
+                  return false;
+               }
+            });
+
+            if (allFilled) {
+               $('.btn01').addClass('active');
+            } else {
+               $('.btn01').removeClass('active');
+            }
+         }
+
+         $('.step01 input[type="text"]').on('input', checkInputs);
+
+         $('.checkboxes input[type="checkbox"]').change(function () {
+            if ($('.checkboxes input[type="checkbox"]:checked').length > 0) {
+               $('.btn02').addClass('active');
+            } else {
+               $('.btn02').removeClass('active');
+            }
+         });
+
+
          $('.question').click(function () {
             $('.modal-manager').addClass('active');
          });
 
          $('.close').click(function () {
             $('.modal-manager').removeClass('active');
+         });
+
+         // Закрытие модального окна при клике вне его контента
+         $(document).click(function (event) {
+            var target = $(event.target);
+            if (!target.closest('.modal-content').length && !target.closest('.question').length) {
+               $('.modal-manager').removeClass('active');
+            }
          });
       });
    </script>

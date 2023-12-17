@@ -193,15 +193,27 @@ body {
   align-items: center;
   gap: 50px;
 }
-.page-testing main .forms {
-  max-width: 760px;
-  margin: 0px auto;
+.page-testing main .forms .submit-test {
+  margin: 50px 0px 0px 0px;
+  border-radius: 999px;
+  background: #248ccb;
+  padding: 21px 50px 25px 50px;
+  color: #fff;
+  text-align: center;
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.page-testing main .forms .step02 {
+  display: none;
 }
 .page-testing main .forms .get-result {
   border-radius: 40px;
   border: 2px solid rgba(0, 0, 0, 0.5);
   background: #fff;
   padding: 25px 30px;
+  display: none;
 }
 .page-testing main .forms .get-result .checkboxes {
   display: flex;
@@ -236,11 +248,6 @@ body {
 .page-testing main .forms .next.active {
   background: #248ccb;
 }
-.page-testing main .forms .step01 {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
 .page-testing main .forms input {
   font-size: 28px;
   font-weight: 400;
@@ -250,6 +257,15 @@ body {
 }
 .page-testing main .forms input:focus {
   border: 2px solid #000;
+}
+.page-testing main .forms .form-content {
+  max-width: 760px;
+  margin: 0px auto;
+}
+.page-testing main .forms .form-content .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 .page-testing main .descriptions {
   margin: 0px 0px 50px 0px;
